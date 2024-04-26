@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+   <!-- ===== MODAL BOX ===== -->
+     
+   <div class="modal" id="myModal">
+       <div class="modal-content">
+           <span class="close"><i class="fa fa-times"></i></span>
+           <div class="content-title">
+               <span>Games</span>
+           </div>
+           <div class="games-box">
+               <span class="games-label">SNAKE</span>
+               <span class="games-label">Quiz Game</span>
+               
+           </div>
+       </div>
+   </div>
+
+   <div class="modal" id="myModal1">
+    <div class="modal-content">
+        <span class="close"><i class="fa fa-times"></i></span>
+        <div class="content-title">
+            <span>Game Tutorials</span>
+        </div>
+        
+      </div>
+   </div>
+
+   <div class="modal" id="myModal2">
+    <div class="modal-content">
+        <span class="close"><i class="fa fa-times"></i></span>
+        <div class="content-title">
+        </div>
+         
+    </div>
+</div>
+
+
+
+
+<style>
+/* ===== Web Fonts ==== */
+   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+   @import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+:root{
+    --bg-color: #ffffff;
+    --first_color: #ffffff;
+    --second-color: #444444;
+    --black-color: #000000;
+    --medium-dark: #444444;
+    --orange-color: #ffa500;
+    --blue-color: #0b7dda;
+    --icons-bg: #f4f4f4;
+}
+body{
+    background: var(--bg-color);
+    width: 100%;
+    height: 100%;
+    min-height: 100dvh;
+    overflow: hidden;
+}
+body.dark{
+    --bg-color: #242526;
+    --first_color: #ffffff;
+    --second-color: #eeeeee;
+    --black-color: #ffffff;
+    --orange-color: #ffa500;
+    --blue-color: #0b7dda;
+    --icons-bg: #242526;
+}
+.wrapper{
+    width: 100%;
+    height: 100%;
+}
+
+/* ===== NAVIGATION BAR ==== */
+.nav{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 6vw;
+    line-height: 100px;
+    background: var(--bg-color);
+    z-index: 100;
+}
+.nav_menu_btn{
+    display: none;
+}
+.close-menu{
+    display: none;
+}
+.nav_logo span{
+    font-size: 40px;
+    font-weight: 600;
+    font-family: 'Delicious Handrawn', cursive;
+    color: var(--second-color);
+}
+.right_nav{
+    display: flex;
+    column-gap: 2vw;
+}
+.link_list{
+    display: flex;
+}
+.list{
+    position: relative;
+    list-style: none;
+    margin: 0 30px;
+}
+.list .link{
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--black-color);
+}
+.fa-caret-down{
+    margin-left: 5px;
+    transition: .3s;
+}
+.list:hover .fa-caret-down{
+    transform: rotate(180deg);
+}
+.list:hover .description_box{
+    display: flex;
+}
+
+/* ===== DESCRIPTION BOX ===== */
+.description_box{
+    display: none;
+    flex-wrap: wrap;
+    gap: 5px;
+    position: fixed;
+    top: 100px;
+    background: #efefff;
+    width: 400px;
+    min-width: 300px;
+    line-height: 30px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 6px 10px 2px rgba(0, 0, 0, 0.2);
+    animation: slideUp .3s;
+}
+.description_box::before{
+    content: "";
+    position: absolute;
+    top: -10px;
+    width: 20px;
+    height: 20px;
+    background: #efefff;
+    transform: rotate(45deg);
+}
+@keyframes slideUp {
+    from{
+        top: 130px;
+    }
+    top{
+        top: 100px;
+    }
+}
+.content-title{
+   font-size: 18px;
+   font-weight: 600;
+   color: var(--medium-dark);
+   border-bottom: 1px solid #ddd;
+   padding-bottom: 10px;
+   margin-bottom: 15px;
+}
+.games-label{
+    font-size: 15px;
+    background: var(--blue-color);
+    color: var(--first_color);
+    border-radius: 5px;
+    padding: 2px 10px;
+}
+.services_list{
+    padding-inline: 20px;
+    margin-top: 10px;
+}
+.about_box{
+    right: 170px;
+}
+.list:last-child .description_box::before{
+    left: 45%;
+}
+.btn{
+    text-decoration: none;
+    font-size: 15px;
+    background: var(--orange-color);
+    color: var(--first_color);
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+.mode{
+    display: flex;
+    align-items: center;
+}
+.moon-sun{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    background: #f5f5f5;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.moon-sun :is(#moon,#sun){
+    position: absolute;
+    color: var(--medium-dark);
+    transition: .2s ease-in-out;
+}
+#sun{
+    opacity: 0;
+}
+body.dark #sun{
+    opacity: 1;
+}
+body.dark #moon{
+    opacity: 0;
+}
+
+/* ===== MODAL BOX ==== */
+.modal{
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding-top: 150px;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    min-width: 100%;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow: auto;
+    z-index: 120;
+}
+.modal-content{
+    background: var(--first_color);
+    margin: auto;
+    width: 500px;
+    padding: 20px;
+    border-radius: 10px;
+}
+.close{
+    color: #aaa;
+    font-size: 18px;
+    float: right;
+}
+.close :is(:hover,:focus){
+    color: var(--medium-dark);
+    cursor: pointer;
+}
+
+/* ===== END OF NAVIGATION BAR ===== */
+
+/* ===== MAIN BOX ===== */
+.row{
+    display: flex;
+}
+.imagecharacter{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+.col{
+    display: flex;
+    width: 50%;
+}
+.col-1{
+    align-items: center;
+    padding-inline: 5vw 50px;
+    color: var(--second-color);
+}
+/* ===== SOCIAL ICONS ===== */
+.social_icons{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 30px;
+    border-radius: 50px;
+    background: var(--icons-bg);
+}
+.icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-block: 5px;
+    color: var(--second-color);
+    cursor: pointer;
+    z-index: 1;
+}
+.icon:nth-child(2){
+    margin-top: 0;
+}
+.icon:last-child{
+    margin-bottom: 0;
+}
+.icon:hover{
+    color: var(--orange-color);
+}
+.icon_circle{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--blue-color);
+    border-radius: 50%;
+    animation: iconSlide 8s ease 1s infinite alternate;
+}
+@keyframes iconSlide {
+    25%{
+        border: 2px solid var(--blue-color);
+        top: 20px;
+    }
+    50%{
+        border: 2px solid #C40101;
+        top: 70px;
+    }
+    75%{
+        border: 2px solid var(--second-color);
+        top: 115px;
+    }
+    100%{
+        border: 2px solid var(--orange-color);
+        top: 160px;
+    }
+}
+/* ===== Paused when the user hover on any icon ===== */
+.social_icons:hover .icon_circle{
+    animation-play-state: paused;
+}
+
+/* ===== imagecharacter Text ===== */
+.imagecharacter_box{
+    display: flex;
+    flex-direction: column;
+}
+.imagecharacter_box .hello{
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.imagecharacter_box .job{
+    font-size: 45px;
+    font-weight: 700;
+    color: var(--second-color);
+    margin-bottom: 10px;
+}
+.imagecharacter_box .imagecharacter_btn{
+    margin-top: 30px;
+}
+.imagecharacter_box button{
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+.btn_1{
+    background: var(--orange-color);
+    color: var(--first_color);
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+}
+.btn_2{
+    margin-left: 1vw;
+    background: var(--orange-color);
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+}
+.btn_2 a{
+    text-decoration: none;
+    color: var(--black_color);
+}
+
+/* ===== imagecharacter IMAGE BOX ===== */
+.col-2{
+    position: relative;
+}
+.circle img{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 590px;
+    animation: circleZoom 5s infinite;
+}
+@keyframes circleZoom {
+    50%{
+        width: 600px;
+    }
+}
+.imagecharacter-image{
+    z-index: 50;
+}
+.imagecharacter-image img{
+    position: absolute;
+    right: 250px;
+    bottom: 0;
+    width: 350px;
+}
+.users{
+    font-size: 15px;
+    position: absolute;
+    left: -100px;
+    bottom: 90px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 200px;
+    height: 80px;
+    padding: 0 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+    z-index: 60;
+}   
+.experience{
+    font-size: 15px;
+    position: absolute;
+    right: 100px;
+    bottom: 320px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 230px;
+    height: 80px;
+    padding: 0 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+    z-index: 60;
+} 
+.users i, .experience i{
+    font-size: 20px;
+}
+
+/* ===== Responsive - Media Query: 1084px ===== */
+@media (max-width: 1084px) {
+    .nav_menu.responsive{
+        position: fixed;
+        left: 0;
+    }
+    .nav_menu{
+        position: fixed;
+        left: -100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 80%;
+        max-width: 600px;
+        height: 100%;
+        background-color: rgba(211, 211, 211, 0.2);
+        backdrop-filter: blur(20px);
+        box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.2);
+        transition: all .2s ease;
+        z-index: 100;
+    }
+    .link_list{
+        flex-direction: column;
+    }
+    .list:hover .description_box{
+        display: none;
+    }
+    .nav_menu_btn{
+        display: flex;
+        align-items: center;
+    }
+    .nav_menu_btn .fa-bars{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        background: var(--second-color);
+        color: var(--bg-color);
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    .close-menu{
+        display: block;
+        position: absolute;
+        top: 0px;
+        right: 30px;
+    }
+    .close-menu i{
+        font-size: 20px;
+        cursor: pointer;
+    }
+    .games-box{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    .imagecharacter-image img{
+        right: 100px;
+        width: 290px;
+    }
+    .circle{
+        width: 480px;
+    }
+    .circle img{
+        width: 480px;
+    }
+    @keyframes circleZoom {
+        50%{
+            width: 460px;
+        }
+    }
+    .experience{
+        right: 20px;
+        top: 350px;
+    }
+}
+
+/* ===== Responsive - Media Query: 870px ===== */
+@media (max-width: 870px) {
+    body{
+        overflow: auto;
+        overflow-x: hidden;
+        width: 100%;
+    }
+    .row{
+        flex-direction: column;
+    }
+    .col-1{
+        position: relative;
+        top: 150px;
+        padding-inline: 8vw;
+        width: 100%;
+        z-index: 10;
+    }
+    .col-2{
+        position: relative;
+        width: 100%;
+        min-height: 600px;
+    }
+    .imagecharacter-image img{
+        right: 100px;
+        width: 280px;
+    }
+    .circle, .circle img{
+        width: 450px;
+    }
+    @keyframes circleZoom {
+        50%{
+            width: 430px;
+        }
+    }
+    .users{
+        left: 50px;
+        bottom: 50px;
+    }
+}
+
+/* ===== Responsive - Media Query: 574px ===== */
+@media (max-width: 574px) {
+    .nav_logo span{
+        font-size: 26px;
+    }
+    .nav_button .btn :not(i){
+        display: none;
+    }
+    .modal-content{
+        width: 90%;
+    }
+    .col-1{
+        padding-inline: 7vw;
+    }
+    .imagecharacter-image img{
+        right: 20px;
+        width: 250px;
+    }
+    .circle img{
+        width: 380px;
+    }
+    @keyframes circleZoom {
+        50%{
+            width: 360px;
+        }
+    }
+    .social_icons{
+        margin-right: 20px;
+    }
+    .experience{
+        top: 350px;
+    }
+}
+
+/* ===== Responsive - Media Query: 394px ===== */
+@media (max-width: 394px) {
+    .nav_button .btn{
+        display: none;
+    }
+}
+
+
+
+</style>
+
+   <!-- ===== END OF  MODAL BOX ===== -->
+
+   <!-- ===== WRAPPER ===== -->
+    <div class="wrapper">
+        <!-- ===== NAVIGATION BAR ===== -->
+        <nav class="nav">
+            <div class="nav_logo">
+                <span>Kill BOREDOM</span>
+            </div>
+            <div class="right_nav">
+                <div class="nav_menu" id="navMenu">
+                    <ul class="link_list">
+                        <div class="close-menu">
+                            <i class="fa fa-times" onclick="menuClose()"></i>
+                        </div>
+                        <li class="list">
+                            <a href="#" class="link">Home</a>
+                        </li>
+                        <li class="list">
+                            <a href="#myModal" class="link" id="myBtn">Games<i class="fa-solid fa-caret-down"></i></a>
+                            <div class="description_box">
+                                <div class="link_description" id="myDescription">
+                                    <div class="content-title">
+                                        <span>Games Listed</span>
+                                    </div>
+                                    <div class="desc_content">
+                                        <span class="games-label">SNAKE</span>
+                                        <span class="games-label">Quiz GAME</span>
+                                        
+                            
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list">
+                            <a href="#myModal1" class="link" id="myBtn">Tutorials <i class="fa-solid fa-caret-down"></i></a>
+                            <div class="description_box">
+                                <div class="link_description" id="myDescription">
+                                    <div class="content-title">
+                                        <span>Game Tutorials</span>
+                                    </div>
+                                    <div class="desc_content">
+                                        <p>Tutotials for our games</p>
+                                        <ul class="services_list">
+                                            <li>Snake GAME: This would have you navigate using the arrow buttons
+                                            to direct the white onject on the game board to hit and collect the coloured squares on the game board thus increasing your points earned and the length of the snake.</li>
+                                            <li>Fun Quiz Game: This is a very easy way to learn, test your knowledge
+                                            and have fun. You simply accumulate score by ansering the correct answers.</li>
+                                           
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list">
+                            <a href="#myModal2" class="link" id="myBtn">About <i class="fa-solid fa-caret-down"></i></a>
+                            <div class="description_box about_box">
+                                <div class="link_description" id="myDescription">
+                                    <div class="content-title">
+                                        <span>About Games</span>
+                                    </div>
+                                    <div class="desc_content">
+                                        <p>Kill BOREDOM is a website created for the purpose of helping users to unwind after likely period of engagements in activities that needed much exertions and dispensing of energy. This website is created to allow a place to relax and ease off stress from the brain helping the body to enter relax mood. The SNAKE game and Fun Quiz Game can be very engaging, fun and exciting, expect a rush of  adrenaline as you adanced your way into accumulating as much scores as you can. I have fun - kill boredom! </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        
+                    </ul>
+                </div>
+                <div class="nav_button">
+                    <a href="assets/pdf/download.pdf" class="btn"><i class="fa fa-download"></i> <span>Download Game Report</span></a>
+                </div>
+                <div class="mode">
+                    <div class="moon-sun" id="toggle-switch">
+                        <i class="fa fa-moon" id="moon"></i>
+                        <i class="fa fa-sun" id="sun"></i>
+                    </div>
+                </div>
+                <div class="nav_menu_btn">
+                    <i class="fa fa-bars" onclick="myMenuFunction()"></i>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- ===== MAIN ===== -->
+        <main class="main">
+            <div class="row imagecharacter">
+                <div class="col col-1">
+                    <div class="social_icons">
+                         <!-- ===== Icon animated circle ===== -->
+                        <div class="icon_circle"></div>
+
+                        <!-- ===== Social Icons  ===== -->
+                        <a href="https://facebook.com" target="_blank" style="text-decoration: none;" rel="noopener noreferrer">
+                            <i class="fa-brands fa-facebook icon"></i>
+                        </a>
+                        <a href="https://playstation.com" target="_blank" style="text-decoration: none;" rel="noopener noreferrer">
+                            <i class="fa-brands fa-playstation icon"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" style="text-decoration: none;" rel="noopener noreferrer">
+                            <i class="fa-brands fa-instagram icon"></i>
+                        </a>
+                        <a href="https://xbox.com" target="_blank" style="text-decoration: none;" rel="noopener noreferrer">
+                            <i class="fa-brands fa-xbox icon"></i>
+                        </a>
+                    </div>
+                    <!-- ===== imagecharacter TEXT  ===== -->
+
+                    <div class="imagecharacter_box">
+                        <div class="hello">
+                            <p>Hello, Welcome</p>
+                        </div>
+                        <div class="job">
+                            <span class="multiText"></span>
+                        </div>
+                        <div class="imagecharacter_description">
+                            <p>Get ready for exciting moments as you entertain youself with our <b>SNAKE Game</b> and <b>Fun QUIZ.</b></p>
+                            <p><i> Use the slider on the left to select which game you prefer or choose from the options below. </i></p>
+                        </div>
+                        <div class="imagecharacter_btn">
+                            <button class="btn_1"> <a href="Snake.html">SNAKE Game</a></button>
+
+                            <button class="btn_2"><a href="index.html"> Fun Quiz Game</a></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-2">
+                    <div class="circle">
+                        <img src="circle.png" alt="">
+                    </div>
+                    <div class="imagecharacter-image">
+                        <img src="Image.png" alt="">
+                    </div>
+                    <div class="users">
+                        <i class="fa-regular fa-user"></i>
+                        <div class="users-content">
+                            <span>More than 2K</span>
+                            <p>frequent game users! </p>
+                        </div>
+                    </div>
+                    <div class="experience">
+                        <i class="fa-regular fa-star"></i>
+                        <div class="xp-content">
+                            <span>Have Fun!!!</span>
+                            <p>don't hold back excitement.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+
+
+
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script>
+        // Types JS
+        var typingEffect = new Typed(".multiText",{
+            strings: ["Fun","Rush","Excitement" ,"Relaxation"],
+            loop: true,
+            typeSpeed: 100,
+            backSpeed: 80,
+            backDelay: 2000
+        })
+        // End of typed JS
+    </script>
+
+
+    <script>
+
+// Dark Mode
+  const body = document.querySelector("body"),
+        toggleSwitch = document.getElementById("toggle-switch");
+
+  toggleSwitch.addEventListener('click', () => {
+    body.classList.toggle("dark");
+  })      
+
+
+
+// Where User clicks on the menu button - open Menu
+
+function myMenuFunction(){
+    var navMenu = document.getElementById('navMenu');
+
+    if (navMenu.className === "nav_menu") {
+        navMenu.className += " responsive";
+    }
+    else{
+        navMenu.className = "nav_menu";
+    }
+}
+
+// Where User clicks on the close(X) button - close Menu
+
+function menuClose(){
+    var navMenu = document.getElementById('navMenu');
+
+    navMenu.className = "nav_menu";
+}
+
+// Modal box must be shown on small devices only - not on desktop or large viewport
+
+var modals = document.querySelectorAll(".modal");
+
+// Get button that opens the modal
+var btn = document.querySelectorAll("a.link");
+
+// Get button that closes the modal
+var closeBtn = document.getElementsByClassName("close");
+
+// Get the media query of the viewport
+const mediaQuery = window.matchMedia("(max-width: 1084px)");
+
+
+
+// Function to allow the modal box to be visible if they match the media query
+
+function handleMediaQueryChange(event) {
+    if (event.matches) {
+        
+        // Open the modal when user clicks the link
+        for(var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function(e) {
+                e.preventDefault();
+                var modal = document.querySelector(e.target.getAttribute("href"));
+                modal.style.display = "block";
+            }
+        }
+        // Close the modal when user clicks the close btn
+        for(var i = 0; i < closeBtn.length; i++) {
+            closeBtn[i].onclick = function() {
+                for (var index in modals) {
+                    if (typeof modals[index].style !== 'undefined') {
+                        modals[index].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        // Close the modal when user clicks the anywhere outside the modal
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                for (var index in modals) {
+                    if (typeof modals[index].style !== 'undefined') {
+                        modals[index].style.display = "none";
+                    }
+                }
+            }
+        }
+
+    }
+
+    else{
+        for(var i = 0; i < btn.length; i++) {
+            btn[i].onclick = function(e) {
+                e.preventDefault();
+                var modal = document.querySelector(e.target.getAttribute("href"));
+                modal.style.display = "none";
+            }
+        }
+    }
+}
+
+handleMediaQueryChange(mediaQuery)
+
+// Add event listener
+mediaQuery.addListener(handleMediaQueryChange)
+
+
+
+// Close the side navbar where user click on the link
+const navLink = document.querySelectorAll(".link");
+
+
+ function linkAction(){
+    const navMenu = document.getElementById("navMenu");
+
+    navMenu.classList.remove("responsive");
+
+ }
+
+ navLink.forEach(n => n.addEventListener('click', linkAction));
+
+    </script>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
